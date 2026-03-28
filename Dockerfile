@@ -1,12 +1,13 @@
-FROM openjdk:21-jdk-slim
+FROM maven:3.9.8-eclipse-temurin-21-jammy AS build
 
 WORKDIR /app
-
 COPY . .
-
-RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
-EXPOSE 8080
+FROM eclipse-temurin:21-jre-jammy
 
-CMD ["java", "-jar", "target/recipecatalog-0.0.1-SNAPSHOT.jar"]
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
