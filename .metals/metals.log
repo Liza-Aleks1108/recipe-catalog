@@ -560,3 +560,4 @@ INFO: Unsupported notification method: $/setTrace
 INFO: Unsupported notification method: $/setTrace
 мар. 28, 2026 7:20:34 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+2026.03.28 19:27:39 INFO  no build target found for C:\Users\Liza\Desktop\Uni\Java\recipecatalog\src\main\java\com\example\recipecatalog\RecipeCatalogApplication.java. Using fallback presentation compiler.
