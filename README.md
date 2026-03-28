@@ -1,12 +1,14 @@
 # Recipe Catalog Application
 
 ## Overview
+
 This project is a web application for managing recipes.  
 It allows users to create, view, edit, and delete recipes, as well as manage recipe categories.
 
 The application is built using Spring Boot with Thymeleaf for the frontend and H2 database for data storage.
 
 ## Technologies Used
+
 - Java
 - Spring Boot
 - Spring Data JPA
@@ -17,6 +19,7 @@ The application is built using Spring Boot with Thymeleaf for the frontend and H
 ## Features Implemented
 
 ### Recipe Management
+
 - Create new recipes
 - View all recipes on the main page
 - View detailed information about a recipe
@@ -24,6 +27,7 @@ The application is built using Spring Boot with Thymeleaf for the frontend and H
 - Delete recipes
 
 Each recipe includes:
+
 - Title
 - Description
 - Instructions
@@ -32,11 +36,13 @@ Each recipe includes:
 - Category
 
 ### Category Management
+
 - View all categories
 - Add new categories
 - Delete categories
 
 ### User Interface
+
 - Responsive and modern design
 - Navigation between pages (Home, Categories, Add Recipe)
 - Styled recipe cards
@@ -44,6 +50,7 @@ Each recipe includes:
 - Detailed recipe page
 
 ### Database
+
 - H2 in-memory database
 - Data is stored using JPA entities
 - Relationships between recipes and categories
