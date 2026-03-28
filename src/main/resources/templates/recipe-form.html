@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Recipe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">Recipe<span>Catalog</span></div>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/categories">Categories</a>
+          <a href="/recipes/new" class="btn btn-primary">Add Recipe</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="form-page">
+      <div class="container">
+        <div class="form-card">
+          <h1>Add New Recipe</h1>
+          <p>Create a new recipe and save it to your catalog.</p>
+
+          <form th:action="@{/recipes}" th:object="${recipe}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+              <label for="title">Recipe title</label>
+              <input
+                type="text"
+                id="title"
+                th:field="*{title}"
+                placeholder="Creamy Chicken Pasta"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Short description</label>
+              <input
+                type="text"
+                id="description"
+                th:field="*{description}"
+                placeholder="A quick and tasty dinner idea"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="instructions">Instructions</label>
+              <textarea
+                id="instructions"
+                th:field="*{instructions}"
+                placeholder="Write cooking steps here"
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cookingTime">Cooking time</label>
+                <input
+                  type="number"
+                  id="cookingTime"
+                  th:field="*{cookingTime}"
+                  placeholder="30"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="servings">Servings</label>
+                <input
+                  type="number"
+                  id="servings"
+                  th:field="*{servings}"
+                  placeholder="4"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category">
+                <option value="">Select category</option>
+                <option th:each="cat : ${categories}" th:text="${cat.name}">
+                  Category
+                </option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save Recipe</button>
+              <a href="/" class="btn btn-secondary">Back</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Recipe Catalog • Spring Boot Project</p>
+      </div>
+    </footer>
+  </body>
+</html>

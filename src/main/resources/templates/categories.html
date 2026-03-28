@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">Recipe<span>Catalog</span></div>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/categories">Categories</a>
+          <a href="/recipes/new" class="btn btn-primary">Add Recipe</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="categories-page">
+      <div class="container">
+        <div class="categories-card">
+          <h1>Categories</h1>
+          <p>Create and manage recipe categories.</p>
+
+          <form
+            th:action="@{/categories}"
+            th:object="${category}"
+            method="post"
+            class="category-form"
+          >
+            <input
+              type="text"
+              th:field="*{name}"
+              placeholder="Enter category name"
+            />
+            <button type="submit" class="btn btn-primary">Add Category</button>
+          </form>
+
+          <div class="category-list">
+            <div class="category-item" th:each="cat : ${categories}">
+              <span class="category-name" th:text="${cat.name}"
+                >Category name</span
+              >
+              <a
+                th:href="@{/categories/delete/{id}(id=${cat.id})}"
+                class="btn btn-secondary"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Recipe Catalog • Spring Boot Project</p>
+      </div>
+    </footer>
+  </body>
+</html>

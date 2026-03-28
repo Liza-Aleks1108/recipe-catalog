@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recipe Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">Recipe<span>Catalog</span></div>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/categories">Categories</a>
+          <a href="/recipes/new" class="btn btn-primary">Add Recipe</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="details-page">
+      <div class="container">
+        <div class="details-card">
+          <div class="details-image">🍽</div>
+
+          <div class="details-content">
+            <span
+              class="details-badge"
+              th:text="${recipe.category != null ? recipe.category.name : 'Uncategorized'}"
+              >Category</span
+            >
+            <h1 th:text="${recipe.title}">Recipe title</h1>
+            <p class="details-description" th:text="${recipe.description}">
+              Recipe description
+            </p>
+
+            <div class="details-meta">
+              <span>⏱ <span th:text="${recipe.cookingTime}">0</span> min</span>
+              <span
+                >🍴 <span th:text="${recipe.servings}">0</span> servings</span
+              >
+            </div>
+
+            <div class="info-box">
+              <h3>Instructions</h3>
+              <p th:text="${recipe.instructions}">Instructions here</p>
+            </div>
+
+            <div class="form-actions">
+              <a href="/" class="btn btn-secondary">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Recipe Catalog • Spring Boot Project</p>
+      </div>
+    </footer>
+  </body>
+</html>

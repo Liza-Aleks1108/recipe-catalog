@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recipe Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">Recipe<span>Catalog</span></div>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/categories">Categories</a>
+          <a href="/recipes/new" class="btn btn-primary">Add Recipe</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <h1>Discover, save and organize your favourite recipes</h1>
+            <p>
+              A modern recipe catalog built with Spring Boot, Thymeleaf and H2
+              Database.
+            </p>
+            <div class="hero-buttons">
+              <a href="/recipes/new" class="btn btn-primary">Create Recipe</a>
+              <a href="#recipes" class="btn btn-secondary">Browse Recipes</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <h3>Why this app?</h3>
+            <ul>
+              <li>Clean and modern interface</li>
+              <li>Easy recipe management</li>
+              <li>Categories and ingredients</li>
+              <li>Great Spring Boot practice</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" id="recipes">
+        <div class="section-title">
+          <div>
+            <h2>Recipe Collection</h2>
+            <p>Your saved recipes will appear here</p>
+          </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(recipes)}" class="empty-state">
+          <h3>No recipes yet</h3>
+          <p>Start by adding your first recipe to the catalog.</p>
+          <br />
+          <a href="/recipes/new" class="btn btn-primary">Add First Recipe</a>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(recipes)}" class="recipe-grid">
+          <div class="recipe-card" th:each="recipe : ${recipes}">
+            <div class="recipe-image">🍽</div>
+
+            <div class="recipe-content">
+              <span
+                class="recipe-category"
+                th:text="${recipe.category != null ? recipe.category.name : 'Uncategorized'}"
+                >Category</span
+              >
+              <h3 th:text="${recipe.title}">Recipe title</h3>
+              <p th:text="${recipe.description}">Recipe description</p>
+
+              <div class="recipe-meta">
+                <span
+                  >⏱ <span th:text="${recipe.cookingTime}">0</span> min</span
+                >
+                <span
+                  >🍴 <span th:text="${recipe.servings}">0</span> servings</span
+                >
+              </div>
+
+              <div class="card-actions">
+                <a
+                  th:href="@{/recipes/{id}(id=${recipe.id})}"
+                  class="btn btn-secondary"
+                  >View</a
+                >
+                <a
+                  th:href="@{/recipes/edit/{id}(id=${recipe.id})}"
+                  class="btn btn-secondary"
+                  >Edit</a
+                >
+                <a
+                  th:href="@{/recipes/delete/{id}(id=${recipe.id})}"
+                  class="btn btn-primary"
+                  >Delete</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Recipe Catalog • Spring Boot Project</p>
+      </div>
+    </footer>
+  </body>
+</html>
